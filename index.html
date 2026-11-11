@@ -1,0 +1,1033 @@
+<title>مَعلَم للتطوير العقاري</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;800&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: full-bleed golden-hour skyline photo under a soft charcoal scrim; centred ivory headline; a frosted search dock where the photo dissolves into the ivory page. */
+:root{
+  --ivory:#F9F7F3;
+  --stone:#EDE7DD;
+  --charcoal:#1F2125;
+  --graphite:#3D4047;
+  --smoke:#86837E;
+  --gold:#BC965C;
+  --gold-deep:#8A6731;
+  --gold-soft:#E6D3AC;
+  --ivory-dim:#DDD6CA;
+  --line:rgba(31,33,37,.12);
+  --glass:rgba(249,247,243,.68);
+  --glass-edge:rgba(255,255,255,.75);
+  --wa:#1E9A55;
+  --paper:#FFFFFF;
+  --err:#A63D2A;
+
+  --f-display:'Tajawal','Segoe UI',Tahoma,Arial,sans-serif;
+  --f-text:'Noto Naskh Arabic','Traditional Arabic','Times New Roman',serif;
+
+  --ink-hero:var(--ivory);
+  --ink-hero-soft:#EEE7DB;
+  --hero-shadow:rgba(12,14,20,.45);
+  --scrim:rgba(30,23,16,.48);
+  --nav-ink:var(--charcoal);
+
+  --wrap:1240px;
+  --nav-h:76px;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+img{max-width:100%}
+body{
+  margin:0;
+  background:var(--ivory);
+  color:var(--charcoal);
+  font-family:var(--f-display);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--ivory)}
+a{color:inherit;text-decoration:none}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;border-radius:6px}
+.site{overflow-x:clip}
+
+/* ---------- Navigation ---------- */
+.nav{
+  position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:50;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  color:var(--nav-ink);
+  transition:background-color .45s ease,box-shadow .45s ease,color .6s ease;
+}
+.nav:not(.scrolled){--nav-ink:var(--ivory)}
+.nav:not(.scrolled) .brand-name,.nav:not(.scrolled) .nav-links,.nav:not(.scrolled) .nav-phone{text-shadow:0 1px 14px rgba(12,14,20,.35)}
+.nav.scrolled{
+  background:rgba(249,247,243,.86);
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);
+  box-shadow:0 1px 0 var(--line);
+}
+.nav-in{max-width:var(--wrap);margin:0 auto;height:var(--nav-h);display:flex;align-items:center;gap:40px}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.brand svg{color:var(--gold);flex-shrink:0}
+.brand-name{display:flex;flex-direction:column;line-height:1.1}
+.brand-name b{font-weight:800;font-size:1.4rem}
+.brand-name small{font-weight:500;font-size:.75rem;opacity:.72;margin-top:3px}
+.nav-links{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.95rem}
+.nav-links a{position:relative;display:inline-block;padding-block:12px;opacity:.86;transition:opacity .2s}
+.nav-links a::after{content:"";position:absolute;right:0;bottom:6px;height:1px;width:0;background:var(--gold);transition:width .3s ease}
+.nav-links a:hover,.nav-links a[aria-current="page"]{opacity:1}
+.nav-links a:hover::after,.nav-links a[aria-current="page"]::after{width:100%}
+.nav-phone{margin-inline-start:auto;display:flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem}
+.nav-phone svg{color:var(--gold)}
+.nav-phone{min-height:44px}
+.nav-phone small{display:block;font-weight:500;font-size:.78rem;opacity:.75}
+.menu-btn{display:none;margin-inline-start:auto;width:44px;height:44px;border:1px solid currentColor;border-radius:12px;background:transparent;cursor:pointer;place-items:center;opacity:.85}
+.menu-panel{
+  position:fixed;left:0;right:0;top:calc(var(--nav-h) + env(safe-area-inset-top,0px));z-index:49;
+  background:var(--ivory);border-bottom:1px solid var(--line);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));
+  box-shadow:0 30px 50px -30px rgba(31,33,37,.3);
+}
+.menu-panel ul{list-style:none;margin:0;padding:0;display:grid}
+.menu-panel a{display:block;padding:14px 4px;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--line)}
+.menu-panel .menu-phone{margin:12px 0 0;font-weight:500;color:var(--graphite)}
+.menu-panel .menu-phone a{display:inline-block;padding:10px 0;border:0;font-size:1.05rem;color:var(--charcoal)}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:clamp(640px,100svh,960px);
+  background:#3A3A3E;
+}
+.hero-media{position:absolute;left:0;right:0;top:0;height:115%;z-index:-3;will-change:transform}
+.hero-media img{
+  display:block;width:100%;height:100%;object-fit:cover;object-position:50% 35%;
+  animation:drift 22s cubic-bezier(.25,.6,.3,1) both;
+}
+@keyframes drift{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero-scrim{
+  position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(22,20,18,.5) 0%,rgba(22,20,18,0) 20%),
+    radial-gradient(ellipse 75% 58% at 50% 40%,var(--scrim),rgba(28,22,16,.1) 72%,rgba(28,22,16,0));
+}
+.hero-veil{position:absolute;z-index:-1;left:0;right:0;bottom:0;height:34%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(249,247,243,0) 0%,rgba(249,247,243,.35) 45%,rgba(249,247,243,.88) 82%,var(--ivory) 100%)}
+.hero-inner{
+  position:relative;min-height:inherit;max-width:var(--wrap);margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:calc(var(--nav-h) + env(safe-area-inset-top,0px) + clamp(48px,11vh,128px)) 32px;
+}
+.hero-copy{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px}
+.hero h1{
+  margin:0;font-weight:800;color:var(--ink-hero);
+  font-size:clamp(2.9rem,1.5rem + 5.8vw,6.4rem);line-height:1.08;
+  text-wrap:balance;text-shadow:0 2px 40px var(--hero-shadow);
+  transition:color .8s ease,text-shadow .8s ease;
+}
+.hero .lead{
+  margin:0;max-width:34ch;font-family:var(--f-text);font-weight:500;
+  font-size:clamp(1.08rem,.95rem + .55vw,1.4rem);line-height:1.95;
+  color:var(--ink-hero-soft);transition:color .8s ease;
+}
+.btn-gold{
+  position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:12px;
+  margin-top:8px;padding:17px 38px;border-radius:14px;
+  font-weight:700;font-size:1.08rem;color:var(--charcoal);
+  background:linear-gradient(135deg,#E0C48F 0%,#C8A266 45%,#A9834A 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 14px 30px -14px rgba(138,103,49,.75);
+  transition:box-shadow .35s ease,transform .35s ease;
+}
+.btn-gold::after{
+  content:"";position:absolute;top:0;bottom:0;width:40%;right:-60%;
+  background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));
+  transform:skewX(-18deg);transition:right .8s ease;
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 0 0 1px rgba(230,211,172,.9),0 0 34px 4px rgba(225,190,125,.55),0 18px 36px -14px rgba(138,103,49,.8)}
+.btn-gold:hover::after{right:130%}
+.btn-gold svg{transition:transform .35s ease}
+.btn-gold:hover svg{transform:translateX(-4px)}
+
+.hero-facts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin:4px 0 0;padding:0;list-style:none;font-size:.92rem;font-weight:500;color:var(--ink-hero-soft);text-shadow:0 1px 12px rgba(12,14,20,.4)}
+.hero-facts li{display:flex;align-items:center;gap:8px}
+.hero-facts li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold-soft)}
+
+/* Search dock */
+.search{
+  width:min(1060px,100%);
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;align-items:stretch;
+  padding:10px;border-radius:22px;
+  background:var(--glass);border:1px solid var(--glass-edge);
+  -webkit-backdrop-filter:blur(20px) saturate(1.3);backdrop-filter:blur(20px) saturate(1.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 30px 60px -32px rgba(31,33,37,.45);
+}
+.field{position:relative;display:flex;flex-direction:column;gap:0;padding:8px 22px 4px;min-width:0}
+.field+.field::before{content:"";position:absolute;top:16px;bottom:16px;right:0;width:1px;background:var(--line)}
+.field label{font-size:.8rem;font-weight:500;color:var(--smoke)}
+.field select{
+  -webkit-appearance:none;appearance:none;width:100%;border:0;cursor:pointer;
+  min-height:44px;padding:6px 0 6px 26px;font-weight:700;font-size:1.02rem;color:var(--charcoal);
+  background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238A6731' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat left 2px center;
+  text-overflow:ellipsis;
+}
+.field select:focus-visible{outline-offset:6px}
+.search-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  border:0;cursor:pointer;padding:0 34px;border-radius:15px;
+  background:var(--charcoal);color:var(--ivory);font-weight:700;font-size:1.02rem;
+  transition:background-color .25s ease,transform .25s ease;
+}
+.search-btn:hover{background:var(--graphite)}
+.search-btn:active{transform:scale(.98)}
+.search-btn svg{color:var(--gold-soft)}
+
+
+/* ---------- Shared section frame ---------- */
+.band{
+  padding-block:clamp(88px,10vw,140px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.band--stone{background:var(--stone)}
+.wrap{max-width:var(--wrap);margin:0 auto}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px 48px;margin-bottom:clamp(40px,5vw,64px)}
+.sec-head>div{min-width:0}
+.sec-head h2,.about-copy h2,.contact-info h2{margin:0;font-weight:800;font-size:clamp(2.1rem,1.5rem + 2.2vw,3.1rem);line-height:1.18;text-wrap:balance}
+.sec-head p,.about-copy>p,.contact-info>p{margin:14px 0 0;max-width:52ch;font-family:var(--f-text);font-size:1.08rem;line-height:1.95;color:var(--graphite)}
+.link-btn{border:0;background:none;padding:4px 0;cursor:pointer;color:var(--gold-deep);font-weight:700;border-bottom:1px solid currentColor;font-size:.95rem}
+.btn-line{
+  display:inline-flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 18px;border-radius:12px;border:1px solid var(--charcoal);background:transparent;cursor:pointer;
+  font-weight:700;color:var(--charcoal);transition:background-color .25s ease,color .25s ease;
+}
+.btn-line:hover{background:var(--charcoal);color:var(--ivory)}
+
+/* ---------- Projects ---------- */
+.results{display:flex;align-items:center;gap:16px;flex-wrap:wrap;color:var(--graphite);font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 28px}
+.card{position:relative;display:flex;flex-direction:column;min-width:0}
+.card-media{
+  position:relative;margin:0;aspect-ratio:16/11;max-width:100%;border-radius:22px;overflow:hidden;
+  background:linear-gradient(165deg,#E9DFCF 0%,#D6C4A8 55%,#BBA27F 100%);
+}
+.card-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.card:hover .card-media img{transform:scale(1.045)}
+.card-chip{
+  position:absolute;top:16px;right:16px;padding:6px 13px;border-radius:999px;
+  background:rgba(31,33,37,.5);color:var(--ivory);font-size:.8rem;font-weight:500;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
+.card-body{
+  position:relative;display:grid;gap:16px;margin:-88px 14px 0;padding:20px 22px 22px;border-radius:18px;
+  background:rgba(249,247,243,.74);border:1px solid rgba(255,255,255,.85);
+  -webkit-backdrop-filter:blur(18px) saturate(1.35);backdrop-filter:blur(18px) saturate(1.35);
+  box-shadow:0 26px 46px -30px rgba(31,33,37,.5);
+}
+.card h3{margin:0;font-size:1.32rem;font-weight:800;line-height:1.3}
+.loc{margin:4px 0 0;display:flex;align-items:flex-start;gap:6px;color:var(--smoke);font-size:.9rem;line-height:1.55}
+.loc svg{flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
+.facts{display:grid;grid-template-columns:1fr 1fr;margin:0;padding-top:14px;border-top:1px solid var(--line)}
+.facts div{display:grid;gap:2px;min-width:0}
+.facts div+div{border-right:1px solid var(--line);padding-right:16px}
+.facts dt{font-size:.8rem;color:var(--smoke)}
+.facts dd{margin:0;font-weight:700;font-size:1.02rem}
+.card .btn-line{width:100%}
+.btn-line svg{transition:transform .3s ease}
+.btn-line:hover svg{transform:translateX(-4px)}
+.empty{grid-column:1/-1;display:grid;justify-items:center;gap:10px;padding:56px 24px;text-align:center;border:1px dashed rgba(31,33,37,.25);border-radius:22px}
+.empty b{font-size:1.2rem}
+.empty p{margin:0;font-family:var(--f-text);color:var(--graphite)}
+
+/* ---------- Why us ---------- */
+.why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(31,33,37,.16)}
+.why-item{display:grid;align-content:start;gap:14px;padding:36px 28px 8px;min-width:0}
+.why-item:first-child{padding-right:0}
+.why-item+.why-item{border-right:1px solid rgba(31,33,37,.16)}
+.why-icon{width:54px;height:54px;color:var(--gold)}
+.why-item h3{margin:0;font-size:1.3rem;font-weight:800}
+.why-item p{margin:0;font-family:var(--f-text);font-size:1rem;line-height:1.95;color:var(--graphite)}
+
+/* ---------- About + stats ---------- */
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:center}
+.about-media{
+  position:relative;margin:0;aspect-ratio:4/5;max-width:100%;border-radius:28px;overflow:hidden;
+  background:linear-gradient(180deg,#1B2236 0%,#3B2C3C 70%,#6B5242 100%);
+}
+.about-media img{display:block;width:100%;height:100%;object-fit:cover}
+.about-media figcaption{
+  position:absolute;right:16px;left:16px;bottom:16px;padding:12px 16px;border-radius:14px;
+  background:rgba(249,247,243,.7);border:1px solid rgba(255,255,255,.8);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);font-size:.88rem;color:var(--graphite);
+}
+.about-media figcaption b{color:var(--charcoal)}
+.stats{display:grid;grid-template-columns:1fr 1fr;margin-top:44px}
+.stat{display:grid;gap:8px;padding-block:28px;border-top:1px solid rgba(31,33,37,.16);min-width:0}
+.stat:nth-child(even){padding-right:32px;border-right:1px solid rgba(31,33,37,.16)}
+.stat-num{font-family:var(--f-text);font-weight:500;font-size:clamp(2.6rem,1.8rem + 3vw,4.4rem);line-height:1.15;color:var(--charcoal);font-variant-numeric:tabular-nums;white-space:nowrap}
+.stat-label{font-weight:500;color:var(--graphite)}
+
+/* ---------- Testimonials ---------- */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.quote{
+  display:flex;flex-direction:column;gap:20px;margin:0;padding:34px 30px 26px;min-width:0;border-radius:22px;
+  background:var(--paper);border:1px solid var(--line);box-shadow:0 34px 50px -42px rgba(31,33,37,.45);
+}
+.quote-mark{color:var(--gold);width:38px;height:30px}
+.quote blockquote{margin:0;font-family:var(--f-text);font-size:1.08rem;line-height:2.05;color:var(--charcoal)}
+.quote figcaption{margin-top:auto;display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--line)}
+.avatar{width:46px;height:46px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:var(--stone);color:var(--gold-deep);font-weight:800;font-size:1.05rem}
+.quote figcaption b{display:block;font-size:1rem}
+.quote figcaption small{color:var(--smoke);font-size:.85rem}
+.stars{display:flex;gap:3px;color:var(--gold)}
+
+/* ---------- Contact ---------- */
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.contact-list{display:grid;gap:0;margin:36px 0 0}
+.contact-list div{display:grid;gap:4px;padding-block:18px;border-top:1px solid var(--line)}
+.contact-list dt{font-size:.85rem;color:var(--smoke)}
+.contact-list dd{margin:0;font-weight:700;font-size:1.08rem}
+.contact-list a{display:inline-block;padding-block:8px;border-bottom:1px solid var(--gold-soft)}
+.form-wrap{padding:clamp(22px,4vw,40px);border-radius:28px;background:var(--paper);border:1px solid var(--line);box-shadow:0 40px 70px -50px rgba(31,33,37,.5)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ctl{display:grid;gap:8px;align-content:start;min-width:0}
+.ctl--full{grid-column:1/-1}
+.ctl label{font-weight:700;font-size:.92rem}
+.ctl .opt{font-weight:400;color:var(--smoke)}
+.ctl input,.ctl select{
+  width:100%;height:54px;padding:0 16px;border-radius:12px;border:1px solid rgba(31,33,37,.18);
+  background:var(--ivory);color:var(--charcoal);font-size:1rem;transition:border-color .2s ease,box-shadow .2s ease;
+}
+.ctl input[dir="ltr"]{text-align:right}
+.ctl select{
+  -webkit-appearance:none;appearance:none;cursor:pointer;padding-left:40px;
+  background:var(--ivory) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238A6731' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat left 16px center;
+}
+.ctl input:focus,.ctl select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(188,150,92,.22)}
+.ctl [aria-invalid="true"]{border-color:var(--err)}
+.err{margin:0;font-size:.85rem;color:var(--err)}
+.form .btn-gold,.form-done .btn-gold{justify-content:center;width:100%;margin:6px 0 0}
+.form-note{margin:12px 0 0;font-size:.85rem;color:var(--smoke);text-align:center}
+.form-ref{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;padding:12px 16px;border-radius:12px;background:var(--stone);font-weight:500}
+.form-done{display:grid;gap:14px;justify-items:start}
+.form-done:focus{outline:none}
+.form-done h3{margin:0;font-size:1.5rem;font-weight:800}
+.form-done p{margin:0;font-family:var(--f-text);line-height:1.95;color:var(--graphite)}
+.done-mark{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--stone);color:var(--gold-deep)}
+
+/* ---------- Footer ---------- */
+.foot{
+  background:var(--charcoal);color:var(--ivory-dim);
+  padding-block:72px calc(32px + env(safe-area-inset-bottom,0px));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:40px}
+.foot .brand{color:var(--ivory)}
+.foot p{margin:16px 0 0;max-width:36ch;font-family:var(--f-text);line-height:1.95}
+.foot h3{margin:0 0 14px;font-size:1rem;font-weight:700;color:var(--ivory)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.foot ul li{min-height:40px;display:flex;align-items:center}
+.foot ul a{display:inline-flex;align-items:center;min-height:44px}
+.foot a:hover{color:var(--gold-soft)}
+.foot-credits{margin:14px 0 0;max-width:none;text-align:right;font-family:var(--f-display);font-size:.78rem;line-height:1.8;color:var(--smoke)}
+.foot-credits a{border-bottom:1px solid rgba(249,247,243,.2)}
+.foot-bottom{margin-top:56px;padding-top:24px;border-top:1px solid rgba(249,247,243,.12);font-size:.88rem;color:var(--smoke)}
+
+/* ---------- Project dialog ---------- */
+.pd{
+  width:min(920px,calc(100% - 32px));max-height:calc(100% - 32px);padding:0;border:0;border-radius:26px;
+  background:var(--ivory);color:var(--charcoal);box-shadow:0 50px 90px -30px rgba(10,12,18,.6);overflow:auto;
+}
+.pd::backdrop{background:rgba(31,33,37,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.pd[open]{animation:pop .4s cubic-bezier(.2,.7,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.pd-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pd-media{min-height:320px;background:linear-gradient(165deg,#E9DFCF 0%,#D6C4A8 55%,#BBA27F 100%)}
+.pd-media img{display:block;width:100%;height:100%;object-fit:cover}
+.pd-body{display:grid;align-content:start;gap:20px;padding:40px 36px 36px;min-width:0}
+.pd-body h2{margin:0;font-size:clamp(1.7rem,1.3rem + 1.4vw,2.2rem);font-weight:800;line-height:1.2}
+.pd-desc{margin:0;font-family:var(--f-text);line-height:2;color:var(--graphite)}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;margin:0}
+.spec div{display:grid;gap:2px;padding-block:12px;border-top:1px solid var(--line)}
+.spec dt{font-size:.8rem;color:var(--smoke)}
+.spec dd{margin:0;font-weight:700}
+.pd-actions{display:flex;flex-wrap:wrap;gap:12px}
+.pd-actions .btn-gold{margin:0}
+.pd-close{
+  position:absolute;top:16px;left:16px;z-index:2;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;
+  display:grid;place-items:center;background:rgba(249,247,243,.88);color:var(--charcoal);
+  box-shadow:0 8px 20px -10px rgba(31,33,37,.5);
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:1060px){
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .why{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .why-item:nth-child(3){padding-right:0;border-right:0}
+  .why-item:nth-child(n+3){border-top:1px solid rgba(31,33,37,.16)}
+  .about,.contact{grid-template-columns:1fr}
+  .about-media{aspect-ratio:16/11}
+  .quotes{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:minmax(300px,46%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:thin}
+  .quote{scroll-snap-align:start}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-grid>:first-child{grid-column:1/-1}
+}
+@media (max-width:760px){
+  .cards{grid-template-columns:1fr}
+  .why{grid-template-columns:1fr}
+  .why-item,.why-item:first-child{padding:28px 0 12px;border-right:0}
+  .why-item+.why-item{border-right:0;border-top:1px solid rgba(31,33,37,.16)}
+  .quotes{grid-auto-columns:86%}
+  .form{grid-template-columns:1fr}
+  .stat:nth-child(even){padding-right:18px}
+  .pd-grid{grid-template-columns:1fr}
+  .pd-media{min-height:0;aspect-ratio:16/10}
+  .pd-body{padding:28px 20px 24px}
+  .foot-grid{grid-template-columns:1fr}
+}
+
+/* ---------- WhatsApp ---------- */
+.wa{
+  position:fixed;z-index:60;
+  bottom:calc(22px + env(safe-area-inset-bottom,0px));
+  left:calc(max(16px,env(safe-area-inset-left,0px)) + 6px);
+  width:60px;height:60px;border-radius:50%;display:grid;place-items:center;
+  background:var(--wa);color:#fff;
+  box-shadow:0 0 0 4px rgba(249,247,243,.9),0 16px 34px -12px rgba(30,154,85,.75);
+  transition:transform .3s ease;
+}
+.wa:hover{transform:translateY(-3px)}
+@media (max-width:1100px){
+  .wa{transition:opacity .35s ease,transform .35s ease}
+  body:not(.past-hero) .wa{opacity:0;transform:translateY(16px);pointer-events:none}
+}
+.wa-tip{position:absolute;left:calc(100% + 14px);top:50%;white-space:nowrap;padding:8px 14px;border-radius:10px;
+  background:var(--charcoal);color:var(--ivory);font-size:.85rem;font-weight:500;
+  opacity:0;transform:translate(-6px,-50%);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+.wa:hover .wa-tip,.wa:focus-visible .wa-tip{opacity:1;transform:translate(0,-50%)}
+
+/* ---------- Load sequence ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hero-copy>*{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy>:nth-child(1){animation-delay:.15s}
+.hero-copy>:nth-child(2){animation-delay:.32s}
+.hero-copy>:nth-child(3){animation-delay:.48s}
+.hero-copy>:nth-child(4){animation-delay:.62s}
+.search{animation:rise 1s cubic-bezier(.2,.7,.2,1) .78s both}
+
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .nav-links,.nav-phone{display:none}
+  .menu-btn{display:grid}
+}
+@media (max-width:760px){
+  :root{--nav-h:68px}
+  .hero-inner{gap:36px;padding-block:calc(var(--nav-h) + env(safe-area-inset-top,0px) + 56px) 20px}
+  .search{grid-template-columns:1fr 1fr;padding:8px;border-radius:20px}
+  .field{padding:10px 14px}
+  .field:first-child{grid-column:1 / -1}
+  .field+.field::before{display:none}
+  .field:first-child{border-bottom:1px solid var(--line)}
+  .field:nth-child(3){border-right:1px solid var(--line)}
+  .search-btn{grid-column:1 / -1;padding:16px;margin-top:6px}
+  .btn-gold{padding:16px 30px}
+  .brand-name b{font-size:1.25rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="site" dir="rtl" lang="ar">
+
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a class="brand" href="#home" aria-label="مَعلَم للتطوير العقاري، الصفحة الرئيسية">
+        <svg width="34" height="38" viewBox="0 0 40 44" aria-hidden="true">
+          <path d="M5 42V18.5C5 10.2 11.7 3.5 20 3.5S35 10.2 35 18.5V42" fill="none" stroke="currentColor" stroke-width="2.2"/>
+          <rect x="11.5" y="25" width="4.4" height="17" fill="currentColor"/>
+          <rect x="17.8" y="14" width="4.4" height="28" fill="currentColor"/>
+          <rect x="24.1" y="20" width="4.4" height="22" fill="currentColor"/>
+          <path d="M1.5 42.5h37" stroke="currentColor" stroke-width="2.2"/>
+        </svg>
+        <span class="brand-name"><b>مَعلَم</b><small>للتطوير العقاري</small></span>
+      </a>
+      <nav aria-label="القائمة الرئيسية">
+        <ul class="nav-links">
+          <li><a href="#home" aria-current="page">الرئيسية</a></li>
+          <li><a href="#projects">المشاريع</a></li>
+          <li><a href="#services">الخدمات</a></li>
+          <li><a href="#about">عن الشركة</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </nav>
+      <a class="nav-phone" href="https://wa.me/201001854373" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11 11 0 0 0 5.2 5.2l1.4-2.1 4.2 1.6V17a2.5 2.5 0 0 1-2.7 2.5C9.6 19 5 14.4 4.5 6.2A2.5 2.5 0 0 1 5 3.5z"/></svg>
+        <span><small>للحجز والاستفسار</small><span dir="ltr">0100 185 4373</span></span>
+      </a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu-panel" aria-label="فتح القائمة">
+        <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M1 1h18M5 7h14M1 13h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+  <div class="menu-panel" id="menu-panel" hidden>
+    <ul>
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#projects">المشاريع</a></li>
+      <li><a href="#services">الخدمات</a></li>
+      <li><a href="#about">عن الشركة</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+    <p class="menu-phone">للحجز والاستفسار: <a href="https://wa.me/201001854373" target="_blank" rel="noopener" dir="ltr">0100 185 4373</a></p>
+  </div>
+
+  <main>
+    <section class="hero" id="home" aria-label="الرئيسية">
+      <picture class="hero-media" id="hero-media">
+        <source media="(max-width: 760px)" srcset="images/hero-mobile.webp" width="900" height="1169">
+        <img src="images/hero.webp" width="2400" height="1216" alt="أبراج سكنية فاخرة وقت الغروب" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="hero-veil" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1>ابنِ مستقبلك معنا</h1>
+          <p class="lead">شقق، فلل، ومشاريع استثمارية بتصاميم استثنائية</p>
+          <a class="btn-gold" href="#projects">
+            استكشف المشاريع
+            <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M17 6H1.5M6 1.2L1.2 6 6 10.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <ul class="hero-facts">
+            <li>مشاريع في ٥ مدن</li>
+            <li>مقدم يبدأ من ٥٪</li>
+            <li>تقسيط حتى ٨ سنوات</li>
+          </ul>
+        </div>
+
+        <form class="search" id="search" role="search" aria-label="ابحث عن عقار">
+          <div class="field">
+            <label for="s-city">المدينة</label>
+            <select id="s-city">
+              <option value="">كل المدن</option>
+              <option value="new-cairo">القاهرة الجديدة</option>
+              <option value="capital">العاصمة الإدارية الجديدة</option>
+              <option value="zayed">الشيخ زايد</option>
+              <option value="north-coast">الساحل الشمالي</option>
+              <option value="sokhna">العين السخنة</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="s-type">نوع العقار</label>
+            <select id="s-type">
+              <option value="">كل الأنواع</option>
+              <option value="apartment">شقة</option>
+              <option value="villa">فيلا</option>
+              <option value="townhouse">تاون هاوس</option>
+              <option value="duplex">دوبلكس</option>
+              <option value="commercial">وحدة تجارية أو إدارية</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="s-price">السعر</label>
+            <select id="s-price">
+              <option value="">أي سعر</option>
+              <option value="0-5">حتى ٥ ملايين ج.م</option>
+              <option value="5-10">من ٥ إلى ١٠ ملايين ج.م</option>
+              <option value="10-20">من ١٠ إلى ٢٠ مليون ج.م</option>
+              <option value="20+">أكثر من ٢٠ مليون ج.م</option>
+            </select>
+          </div>
+          <button class="search-btn" type="submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5L16 16"/></svg>
+            ابحث الآن
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="band" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <h2 id="projects-title">مشاريعنا المتاحة للحجز</h2>
+            <p>وحدات في خمس مدن مصرية، بأنظمة سداد تبدأ بمقدم ٥٪ وتقسيط حتى ٨ سنوات.</p>
+          </div>
+          <div class="results" aria-live="polite">
+            <span id="results-text">٦ مشاريع</span>
+            <button class="link-btn" type="button" id="results-reset" hidden>عرض كل المشاريع</button>
+          </div>
+        </div>
+        <div class="cards" id="cards"></div>
+      </div>
+    </section>
+
+    <!-- Why us -->
+    <section class="band band--stone" id="services" aria-labelledby="why-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <h2 id="why-title">لماذا نحن؟</h2>
+            <p>أربعة التزامات نكتبها في عقد كل عميل.</p>
+          </div>
+        </div>
+        <div class="why">
+          <article class="why-item">
+            <svg class="why-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M28 6l18 6.5v12.5c0 11.5-7.6 20-18 25-10.4-5-18-13.5-18-25V12.5z"/><path d="M20 28l6 6 11-12"/></svg>
+            <h3>ثقة</h3>
+            <p>١٨ عامًا في السوق المصري. كل أرض مسجّلة باسم الشركة، وكل مشروع له جدول مراحل معلن.</p>
+          </article>
+          <article class="why-item">
+            <svg class="why-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="28" cy="15" rx="15" ry="6"/><path d="M13 15v9c0 3.3 6.7 6 15 6s15-2.7 15-6v-9"/><path d="M13 24v9c0 3.3 6.7 6 15 6s15-2.7 15-6v-9"/><path d="M13 33v8c0 3.3 6.7 6 15 6s15-2.7 15-6v-8"/></svg>
+            <h3>تمويل</h3>
+            <p>مقدم يبدأ من ٥٪ وتقسيط حتى ٨ سنوات بدون فوائد، مع إمكانية التمويل العقاري عبر البنوك المصرية.</p>
+          </article>
+          <article class="why-item">
+            <svg class="why-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5h20l10 10v36H14z"/><path d="M34 5v10h10"/><path d="M21 24h16M21 31h16M21 38h7"/><circle cx="37" cy="41" r="5"/><path d="M34.5 45.5L33 51l4-2 4 2-1.5-5.5"/></svg>
+            <h3>توثيق قانوني</h3>
+            <p>عقود يراجعها مستشارنا القانوني، وتسجيل في الشهر العقاري، وملف كامل للأرض والتراخيص قبل التوقيع.</p>
+          </article>
+          <article class="why-item">
+            <svg class="why-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="11" width="40" height="38" rx="4"/><path d="M8 21h40M18 5v10M38 5v10"/><path d="M20 35l6 6 11-12"/></svg>
+            <h3>تسليم في الموعد</h3>
+            <p>موعد الاستلام مكتوب في العقد، ونرسل لك تقريرًا مصوّرًا كل شهر عن تقدّم أعمال البناء.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About + stats -->
+    <section class="band" id="about" aria-labelledby="about-title">
+      <div class="wrap about">
+        <figure class="about-media">
+          <img id="about-img" src="images/about.webp" width="553" height="639" alt="واجهة بحرية وأبراج سكنية ليلًا" loading="lazy" decoding="async">
+        </figure>
+        <div class="about-copy">
+          <h2 id="about-title">عن مَعلَم</h2>
+          <p>مَعلَم شركة تطوير عقاري مصرية تأسست عام ٢٠٠٨. نصمّم ونبني مجتمعات سكنية متكاملة في القاهرة الجديدة والشيخ زايد والعاصمة الإدارية والساحل الشمالي، ونتابع كل مشروع بأنفسنا من شراء الأرض حتى تسليم المفتاح.</p>
+          <div class="stats">
+            <div class="stat"><span class="stat-num" data-to="42">٤٢</span><span class="stat-label">مشروعًا منفّذًا</span></div>
+            <div class="stat"><span class="stat-num" data-to="7850">٧٬٨٥٠</span><span class="stat-label">وحدة مباعة حتى اليوم</span></div>
+            <div class="stat"><span class="stat-num" data-to="18">١٨</span><span class="stat-label">عامًا من الخبرة</span></div>
+            <div class="stat"><span class="stat-num" data-to="96" data-suffix="٪">٩٦٪</span><span class="stat-label">نسبة رضا العملاء</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials: sample quotes, replace with real client reviews before going live -->
+    <section class="band band--stone" id="reviews" aria-labelledby="reviews-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <h2 id="reviews-title">آراء عملائنا</h2>
+            <p>ما يقوله ملّاك الوحدات بعد الاستلام.</p>
+          </div>
+        </div>
+        <div class="quotes" tabindex="0" aria-label="آراء العملاء">
+          <figure class="quote">
+            <svg class="quote-mark" viewBox="0 0 38 30" fill="currentColor" aria-hidden="true"><path d="M38 0v4c-5 1.2-7.6 4.4-8 9.5h7V30H22V15C22 6 27.3.9 38 0zM16 0v4c-5 1.2-7.6 4.4-8 9.5h7V30H0V15C0 6 5.3.9 16 0z"/></svg>
+            <blockquote>استلمنا الشقة قبل موعدها بشهرين، والتشطيب مطابق للعينة التي رأيناها في المعاينة. أكثر ما طمأنني أن العقد كان واضحًا في كل بند.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">هـ</span><span><b>هشام الدسوقي</b><small>مالك شقة في برج مَعلَم ريزيدنس</small></span></figcaption>
+          </figure>
+          <figure class="quote">
+            <svg class="quote-mark" viewBox="0 0 38 30" fill="currentColor" aria-hidden="true"><path d="M38 0v4c-5 1.2-7.6 4.4-8 9.5h7V30H22V15C22 6 27.3.9 38 0zM16 0v4c-5 1.2-7.6 4.4-8 9.5h7V30H0V15C0 6 5.3.9 16 0z"/></svg>
+            <blockquote>كنت أبحث عن فيلا قريبة من مدارس الأولاد في زايد. فريق المبيعات رتّب لي ثلاث معاينات في أسبوع واحد، وساعدني في إنهاء التمويل مع البنك.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">ر</span><span><b>رانيا عبد العزيز</b><small>مالكة فيلا في فلل الواحة</small></span></figcaption>
+          </figure>
+          <figure class="quote">
+            <svg class="quote-mark" viewBox="0 0 38 30" fill="currentColor" aria-hidden="true"><path d="M38 0v4c-5 1.2-7.6 4.4-8 9.5h7V30H22V15C22 6 27.3.9 38 0zM16 0v4c-5 1.2-7.6 4.4-8 9.5h7V30H0V15C0 6 5.3.9 16 0z"/></svg>
+            <blockquote>اشتريت وحدتين إداريتين للاستثمار. التقارير المصوّرة كل شهر جعلتني أتابع البناء وأنا في الخارج، وأجّرت الوحدتين خلال ثلاثة أشهر من الاستلام.</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">ك</span><span><b>كريم فؤاد</b><small>مستثمر في مَعلَم بيزنس بارك</small></span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="band" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact">
+        <div class="contact-info">
+          <h2 id="contact-title">تواصل معنا</h2>
+          <p>اترك بياناتك وسيتصل بك مستشار مبيعات خلال يوم عمل واحد لتحديد موعد المعاينة.</p>
+          <dl class="contact-list">
+            <div><dt>واتساب والهاتف</dt><dd><a href="https://wa.me/201001854373" target="_blank" rel="noopener" dir="ltr">0100 185 4373</a></dd></div>
+            <div><dt>مقر الشركة</dt><dd>التجمع الخامس، القاهرة الجديدة</dd></div>
+            <div><dt>مواعيد العمل</dt><dd>السبت إلى الخميس من ١٠ صباحًا إلى ١٠ مساءً</dd></div>
+          </dl>
+        </div>
+
+        <div class="form-wrap">
+          <form class="form" id="lead" novalidate>
+            <p class="form-ref ctl--full" id="form-ref" hidden><span id="form-ref-text"></span><button class="link-btn" type="button" id="form-ref-clear">إزالة</button></p>
+            <div class="ctl">
+              <label for="f-name">الاسم</label>
+              <input id="f-name" name="name" autocomplete="name" aria-describedby="e-name">
+              <p class="err" id="e-name" hidden></p>
+            </div>
+            <div class="ctl">
+              <label for="f-phone">رقم الموبايل</label>
+              <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="01xxxxxxxxx" aria-describedby="e-phone">
+              <p class="err" id="e-phone" hidden></p>
+            </div>
+            <div class="ctl">
+              <label for="f-email">البريد الإلكتروني <span class="opt">(اختياري)</span></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" dir="ltr" placeholder="name@example.com" aria-describedby="e-email">
+              <p class="err" id="e-email" hidden></p>
+            </div>
+            <div class="ctl">
+              <label for="f-type">نوع العقار المطلوب</label>
+              <select id="f-type" name="type" aria-describedby="e-type">
+                <option value="">اختر نوع العقار</option>
+                <option value="apartment">شقة</option>
+                <option value="villa">فيلا</option>
+                <option value="townhouse">تاون هاوس</option>
+                <option value="duplex">دوبلكس</option>
+                <option value="commercial">وحدة تجارية أو إدارية</option>
+              </select>
+              <p class="err" id="e-type" hidden></p>
+            </div>
+            <div class="ctl ctl--full">
+              <button class="btn-gold" type="submit">أرسل الطلب عبر واتساب</button>
+              <p class="form-note">نستخدم بياناتك للتواصل معك بخصوص طلبك فقط.</p>
+            </div>
+          </form>
+
+          <div class="form-done" id="lead-done" tabindex="-1" hidden>
+            <span class="done-mark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <h3>طلبك جاهز للإرسال</h3>
+            <p>اضغط الزر ليفتح واتساب برسالة فيها بياناتك، ثم أرسلها إلى فريق المبيعات على الرقم <span dir="ltr">0100 185 4373</span>.</p>
+            <a class="btn-gold" id="lead-wa" href="https://wa.me/201001854373" target="_blank" rel="noopener">افتح واتساب وأرسل الطلب</a>
+            <button class="link-btn" type="button" id="lead-edit">تعديل البيانات</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a class="brand" href="#home" aria-label="مَعلَم للتطوير العقاري، العودة لأعلى الصفحة">
+            <svg width="34" height="38" viewBox="0 0 40 44" aria-hidden="true" style="color:var(--gold)">
+              <path d="M5 42V18.5C5 10.2 11.7 3.5 20 3.5S35 10.2 35 18.5V42" fill="none" stroke="currentColor" stroke-width="2.2"/>
+              <rect x="11.5" y="25" width="4.4" height="17" fill="currentColor"/>
+              <rect x="17.8" y="14" width="4.4" height="28" fill="currentColor"/>
+              <rect x="24.1" y="20" width="4.4" height="22" fill="currentColor"/>
+              <path d="M1.5 42.5h37" stroke="currentColor" stroke-width="2.2"/>
+            </svg>
+            <span class="brand-name"><b>مَعلَم</b><small>للتطوير العقاري</small></span>
+          </a>
+          <p>شركة مصرية للتطوير العقاري منذ ٢٠٠٨. شقق وفلل ووحدات إدارية في خمس مدن.</p>
+        </div>
+        <div>
+          <h3>روابط</h3>
+          <ul>
+            <li><a href="#projects">المشاريع</a></li>
+            <li><a href="#services">الخدمات</a></li>
+            <li><a href="#about">عن الشركة</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>تواصل</h3>
+          <ul>
+            <li><a href="https://wa.me/201001854373" target="_blank" rel="noopener" dir="ltr">0100 185 4373</a></li>
+            <li>التجمع الخامس، القاهرة الجديدة</li>
+            <li>السبت إلى الخميس من ١٠ صباحًا إلى ١٠ مساءً</li>
+          </ul>
+        </div>
+      </div>
+      <p class="foot-bottom">© ٢٠٢٦ مَعلَم للتطوير العقاري. جميع الحقوق محفوظة.<br>موقع تجريبي: أسماء المشاريع والصور والأسعار والأرقام وآراء العملاء أمثلة توضيحية.</p>
+      <p class="foot-credits" dir="ltr">Photos:
+        <a href="https://commons.wikimedia.org/wiki/File:Dubai_Marina_Skyline.jpg" target="_blank" rel="noopener">Norlando Pobre (CC BY 2.0)</a>,
+        <a href="https://commons.wikimedia.org/wiki/File:3D_Rendering_of_Modern_Luxury_Villa_Exterior_with_Pool.jpg" target="_blank" rel="noopener">Tuantranseo (CC BY 4.0)</a>,
+        <a href="https://commons.wikimedia.org/wiki/File:Dubai_Marina_(222830069).jpeg" target="_blank" rel="noopener">Francisco Anzola (CC BY 3.0)</a>,
+        <a href="https://commons.wikimedia.org/wiki/File:Dubai_Jumeirah_Beach.JPG" target="_blank" rel="noopener">pe-sa (CC BY 3.0)</a>,
+        <a href="https://commons.wikimedia.org/wiki/File:Warsaw_Spire,_Poland_22_June_2016.jpg" target="_blank" rel="noopener">AGC Glass Europe (CC BY 2.0)</a>,
+        rawpixel (CC0).</p>
+    </div>
+  </footer>
+
+  <dialog class="pd" id="pd" aria-labelledby="pd-title">
+    <button class="pd-close" type="button" id="pd-close" aria-label="إغلاق">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <div class="pd-grid">
+      <div class="pd-media"><img id="pd-img" alt="" width="1100" height="740"></div>
+      <div class="pd-body">
+        <div>
+          <h2 id="pd-title"></h2>
+          <p class="loc" id="pd-loc"></p>
+        </div>
+        <p class="pd-desc" id="pd-desc"></p>
+        <dl class="spec" id="pd-spec"></dl>
+        <div class="pd-actions">
+          <button class="btn-gold" type="button" id="pd-book">احجز معاينة</button>
+          <a class="btn-line" id="pd-wa" href="https://wa.me/201001854373" target="_blank" rel="noopener">اسأل على واتساب</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <a class="wa" href="https://wa.me/201001854373?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%A7%D8%B1%D9%8A%D8%B9%20%D9%85%D8%B9%D9%84%D9%85" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب على الرقم 01001854373">
+    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M16 4.5a11.5 11.5 0 0 0-9.9 17.3L4.5 27.5l5.9-1.6A11.5 11.5 0 1 0 16 4.5z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/>
+      <path d="M12.3 10.4c-.5 0-1.1.2-1.4.7-.5.7-.9 1.7-.6 3 .5 2.1 2.6 4.8 5 6.2 1.6.9 3 1.2 4 .8.7-.3 1.2-.9 1.3-1.5.1-.4-.1-.7-.5-.9l-2-1c-.4-.2-.8-.1-1 .2l-.6.8c-.2.3-.5.3-.8.2-1.2-.6-2.3-1.6-2.9-2.8-.2-.3-.1-.6.1-.8l.6-.7c.2-.3.3-.6.1-1l-.9-2.1c-.1-.3-.4-.5-.7-.5z" fill="currentColor"/>
+    </svg>
+    <span class="wa-tip">تواصل عبر واتساب</span>
+  </a>
+</div>
+
+<script>
+/* ---------- Page UI ---------- */
+(function(){
+  document.documentElement.lang = 'ar';
+  document.documentElement.dir = 'rtl';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const nav = document.getElementById('nav');
+  const heroBox = document.getElementById('home');
+  const setNav = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    document.body.classList.toggle('past-hero', window.scrollY > heroBox.offsetHeight * 0.55);
+  };
+  setNav();
+  addEventListener('scroll', setNav, {passive:true});
+
+  const btn = document.getElementById('menu-btn');
+  const panel = document.getElementById('menu-panel');
+  const closeMenu = () => { panel.hidden = true; btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','فتح القائمة'); };
+  btn.addEventListener('click', () => {
+    const open = panel.hidden;
+    panel.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'إغلاق القائمة' : 'فتح القائمة');
+    nav.classList.toggle('scrolled', open || window.scrollY > 40);
+  });
+  panel.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { closeMenu(); btn.focus(); } });
+
+  /* ---------- Projects data ---------- */
+  const WA = '201001854373';
+  const PROJECTS = [
+    {id:"tower", name:"برج مَعلَم ريزيدنس", city:"capital", cityLabel:"العاصمة الإدارية الجديدة", district:"الحي السكني R3", type:"apartment", typeLabel:"شقق", price:6.8, area:[120,240], rooms:"من غرفتين إلى ٤ غرف", finish:"تشطيب كامل بالتكييفات", delivery:"الربع الرابع ٢٠٢٧", down:10, years:8,
+     alt:"برج سكني أبيض بشرفات بارزة",
+     desc:"برج سكني من ٢٤ طابقًا بشرفات معلّقة تبرز من كل واجهة، فلكل شقة مساحة خارجية خاصة. يضم ناديًا صحيًا وحمام سباحة على السطح وجراجًا من ثلاثة أدوار."},
+    {id:"villas", name:"فلل الواحة", city:"zayed", cityLabel:"الشيخ زايد", district:"بالقرب من محور ٢٦ يوليو", type:"villa", typeLabel:"فلل", price:24.5, area:[380,520], rooms:"٥ غرف نوم", finish:"نصف تشطيب", delivery:"استلام فوري", down:15, years:6,
+     alt:"فيلا حديثة من طابقين بحمام سباحة وقت الغروب",
+     desc:"٢٤ فيلا مستقلة على أراضٍ تبدأ من ٦٠٠ م²، بواجهات زجاجية كاملة وتراسات واسعة، ولكل فيلا حديقة خاصة وحمام سباحة. الكمبوند مغلق ومؤمَّن على مدار الساعة."},
+    {id:"heights", name:"أبراج مَعلَم العلمين", city:"north-coast", cityLabel:"الساحل الشمالي", district:"العلمين الجديدة، الواجهة البحرية", type:"duplex", typeLabel:"دوبلكس", price:11.2, area:[220,310], rooms:"٤ غرف نوم", finish:"تشطيب كامل", delivery:"الربع الثاني ٢٠٢٧", down:10, years:7,
+     alt:"أبراج سكنية على مرسى لليخوت",
+     desc:"أبراج سكنية على الواجهة البحرية بمرسى خاص لليخوت وممشى على الماء. وحدات الدوبلكس في الأدوار العليا مفتوحة على البحر من الجهتين."},
+    {id:"coast", name:"مرسى الضوء", city:"north-coast", cityLabel:"الساحل الشمالي", district:"سيدي عبد الرحمن، الكيلو ١٣٠", type:"townhouse", typeLabel:"تاون هاوس", price:9.4, area:[160,210], rooms:"٣ غرف نوم", finish:"تشطيب كامل", delivery:"صيف ٢٠٢٧", down:5, years:8,
+     alt:"منتجع بحمام سباحة ممتد ومظلات",
+     desc:"تاون هاوس حول حمام سباحة ممتد بطول ٣٠٠ متر، والشاطئ على بعد أربع دقائق سيرًا. لكل وحدة تراس أمامي وروف بإطلالة على البحر."},
+    {id:"sokhna", name:"بوابة السخنة", city:"sokhna", cityLabel:"العين السخنة", district:"طريق الزعفرانة، الكيلو ٥٥", type:"apartment", typeLabel:"شقق", price:4.6, area:[90,150], rooms:"من غرفة إلى ٣ غرف", finish:"تشطيب كامل بالأجهزة", delivery:"استلام فوري", down:10, years:5,
+     alt:"أبراج سكنية على الشاطئ مباشرة",
+     desc:"شقق في أبراج على الشاطئ مباشرة بإطلالة على خليج السويس، على ساعة ونصف من القاهرة. إدارة فندقية اختيارية لتأجير وحدتك في غيابك."},
+    {id:"business", name:"مَعلَم بيزنس بارك", city:"new-cairo", cityLabel:"القاهرة الجديدة", district:"التجمع الخامس، شارع التسعين الشمالي", type:"commercial", typeLabel:"إداري وتجاري", price:7.9, area:[65,180], rooms:"مكاتب مفتوحة أو مقسّمة", finish:"تشطيب كامل بتكييف مركزي", delivery:"الربع الأول ٢٠٢٨", down:10, years:7,
+     alt:"برج إداري زجاجي ومبنيان منخفضان حوله",
+     desc:"برج إداري بواجهة زجاجية مزدوجة يحيط به مبنيان للمحلات والمطاعم وساحة مشاة. العائد الإيجاري المتوقع من ٨٪ إلى ١٠٪ سنويًا."}
+  ];
+  const fmt = n => n.toLocaleString('ar-EG');
+  const priceText = p => fmt(p.price) + ' مليون ج.م';
+  const areaText = p => fmt(p.area[0]) + ' إلى ' + fmt(p.area[1]) + ' م²';
+  const pin = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
+  const arrow = '<svg width="16" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M17 6H1.5M6 1.2L1.2 6 6 10.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const byId = id => PROJECTS.find(p => p.id === id);
+  const imgSrc = p => "images/" + p.id + ".webp";
+
+  const cardsEl = document.getElementById('cards');
+  const resultsText = document.getElementById('results-text');
+  const resetBtn = document.getElementById('results-reset');
+
+  function cardHTML(p){
+    return '<article class="card" id="p-' + p.id + '">' +
+      '<figure class="card-media"><img src="' + imgSrc(p) + '" alt="' + p.alt + '" width="1100" height="740" loading="lazy" decoding="async"><span class="card-chip">' + p.typeLabel + '</span></figure>' +
+      '<div class="card-body">' +
+        '<div><h3>' + p.name + '</h3><p class="loc">' + pin + '<span>' + p.cityLabel + '، ' + p.district + '</span></p></div>' +
+        '<dl class="facts"><div><dt>يبدأ من</dt><dd>' + priceText(p) + '</dd></div><div><dt>المساحة</dt><dd>' + areaText(p) + '</dd></div></dl>' +
+        '<button class="btn-line" type="button" data-open="' + p.id + '">اعرف التفاصيل' + arrow + '</button>' +
+      '</div></article>';
+  }
+  const inPrice = (p, r) => !r || (r === '0-5' ? p.price <= 5 : r === '5-10' ? p.price > 5 && p.price <= 10 : r === '10-20' ? p.price > 10 && p.price <= 20 : p.price > 20);
+  function renderCards(f){
+    f = f || {};
+    const list = PROJECTS.filter(p => (!f.city || p.city === f.city) && (!f.type || p.type === f.type) && inPrice(p, f.price));
+    const filtered = !!(f.city || f.type || f.price);
+    if (list.length) {
+      cardsEl.innerHTML = list.map(cardHTML).join('');
+    } else {
+      cardsEl.innerHTML = '<div class="empty"><b>لا توجد مشاريع تطابق بحثك</b><p>جرّب مدينة أخرى أو نطاق سعر أوسع.</p><button class="link-btn" type="button" data-reset>عرض كل المشاريع</button></div>';
+    }
+    resultsText.textContent = filtered
+      ? (list.length ? fmt(list.length) + ' من ' + fmt(PROJECTS.length) + ' مشاريع تطابق بحثك' : 'لا نتائج لبحثك')
+      : fmt(PROJECTS.length) + ' مشاريع';
+    resetBtn.hidden = !filtered;
+    reveal(cardsEl.querySelectorAll('.card'));
+  }
+
+  // Search
+  const sCity = document.getElementById('s-city'), sType = document.getElementById('s-type'), sPrice = document.getElementById('s-price');
+  document.getElementById('search').addEventListener('submit', e => {
+    e.preventDefault();
+    renderCards({city: sCity.value, type: sType.value, price: sPrice.value});
+    document.getElementById('projects').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  });
+  function resetSearch(){ sCity.value = ''; sType.value = ''; sPrice.value = ''; renderCards(); }
+  resetBtn.addEventListener('click', resetSearch);
+
+  /* ---------- Project dialog ---------- */
+  const dlg = document.getElementById('pd');
+  let current = null, lastFocus = null;
+  function openProject(id){
+    const p = byId(id); if (!p) return;
+    current = p; lastFocus = document.activeElement;
+    document.getElementById('pd-title').textContent = p.name;
+    document.getElementById('pd-loc').innerHTML = pin + '<span>' + p.cityLabel + '، ' + p.district + '</span>';
+    document.getElementById('pd-desc').textContent = p.desc;
+    const rows = [
+      ['يبدأ من', priceText(p)], ['المساحة', areaText(p)],
+      ['الغرف', p.rooms], ['التشطيب', p.finish],
+      ['الاستلام', p.delivery], ['نظام السداد', 'مقدم ' + fmt(p.down) + '٪ وتقسيط ' + fmt(p.years) + ' سنوات']
+    ];
+    document.getElementById('pd-spec').innerHTML = rows.map(r => '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>').join('');
+    const img = document.getElementById('pd-img');
+    img.src = imgSrc(p); img.alt = p.alt;
+    document.getElementById('pd-wa').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('مرحبًا، أريد تفاصيل أكثر عن مشروع ' + p.name + ' في ' + p.cityLabel + '.');
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  function closeProject(){ if (dlg.open) dlg.close(); }
+  dlg.addEventListener('close', () => { if (lastFocus && lastFocus.focus) lastFocus.focus(); });
+  dlg.addEventListener('click', e => { if (e.target === dlg) closeProject(); });
+  document.getElementById('pd-close').addEventListener('click', closeProject);
+  document.addEventListener('click', e => {
+    const o = e.target.closest('[data-open]');
+    if (o) { openProject(o.dataset.open); return; }
+    if (e.target.closest('[data-reset]')) resetSearch();
+  });
+
+  /* ---------- Lead form ---------- */
+  const lead = document.getElementById('lead'), done = document.getElementById('lead-done');
+  const ref = document.getElementById('form-ref'), refText = document.getElementById('form-ref-text');
+  const fType = document.getElementById('f-type');
+  let leadProject = null;
+  function setRef(p){
+    leadProject = p;
+    ref.hidden = !p;
+    if (p) refText.textContent = 'طلب معاينة لمشروع ' + p.name;
+  }
+  document.getElementById('form-ref-clear').addEventListener('click', () => setRef(null));
+  document.getElementById('pd-book').addEventListener('click', () => {
+    const p = current; closeProject();
+    const map = {apartment:'apartment', villa:'villa', townhouse:'townhouse', duplex:'duplex', commercial:'commercial'};
+    fType.value = map[p.type] || '';
+    setRef(p);
+    done.hidden = true; lead.hidden = false;
+    document.getElementById('contact').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+    setTimeout(() => document.getElementById('f-name').focus({preventScroll: true}), reduce ? 0 : 700);
+  });
+
+  const toLatin = s => s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+  function setErr(id, msg){
+    const input = document.getElementById('f-' + id), el = document.getElementById('e-' + id);
+    el.textContent = msg || ''; el.hidden = !msg;
+    if (msg) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+    return !msg;
+  }
+  lead.addEventListener('input', e => { if (e.target.id && e.target.getAttribute('aria-invalid')) setErr(e.target.id.slice(2), ''); });
+  lead.addEventListener('change', e => { if (e.target.id && e.target.getAttribute('aria-invalid')) setErr(e.target.id.slice(2), ''); });
+  lead.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value.trim();
+    const phoneRaw = toLatin(document.getElementById('f-phone').value).replace(/[\s\-()]/g, '');
+    const email = document.getElementById('f-email').value.trim();
+    const ok = [
+      setErr('name', name.length < 2 ? 'اكتب اسمك حتى نعرف كيف نناديك.' : ''),
+      setErr('phone', /^(\+?20|0020)?0?1[0125]\d{8}$/.test(phoneRaw) ? '' : 'اكتب رقم موبايل مصري من ١١ رقمًا يبدأ بـ 01.'),
+      setErr('email', !email || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? '' : 'البريد الإلكتروني غير مكتمل، مثال: name@example.com'),
+      setErr('type', fType.value ? '' : 'اختر نوع العقار الذي تبحث عنه.')
+    ];
+    if (ok.includes(false)) { lead.querySelector('[aria-invalid="true"]').focus(); return; }
+    const lines = ['طلب جديد من موقع مَعلَم', 'الاسم: ' + name, 'الموبايل: ' + phoneRaw];
+    if (email) lines.push('البريد: ' + email);
+    lines.push('نوع العقار: ' + fType.selectedOptions[0].text);
+    if (leadProject) lines.push('المشروع: ' + leadProject.name);
+    document.getElementById('lead-wa').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(lines.join('\n'));
+    lead.hidden = true; done.hidden = false; done.focus();
+  });
+  document.getElementById('lead-edit').addEventListener('click', () => { done.hidden = true; lead.hidden = false; document.getElementById('f-name').focus(); });
+
+  /* ---------- Hero parallax ---------- */
+  const heroMedia = document.getElementById("hero-media"), heroEl = document.getElementById("home");
+  if (!reduce && heroMedia) {
+    let ticking = false;
+    addEventListener("scroll", () => {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(() => {
+        const y = Math.min(window.scrollY, heroEl.offsetHeight);
+        heroMedia.style.transform = "translate3d(0," + (y * 0.3).toFixed(1) + "px,0)";
+        ticking = false;
+      });
+    }, {passive: true});
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  const revealIO = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('in'); revealIO.unobserve(en.target); }
+  }), {threshold: 0.12, rootMargin: '0px 0px -6% 0px'}) : null;
+  function reveal(nodes){
+    if (reduce || !revealIO) return;
+    [...nodes].forEach((n, i) => {
+      if (n.getBoundingClientRect().top < innerHeight) return;
+      n.classList.add('reveal');
+      n.style.transitionDelay = ((i % 4) * 90) + 'ms';
+      revealIO.observe(n);
+    });
+  }
+  renderCards();
+  reveal(document.querySelectorAll('.sec-head, .about-media, .about-copy, .contact-info, .form-wrap'));
+  reveal(document.querySelectorAll('.why-item'));
+  reveal(document.querySelectorAll('.quote'));
+
+  /* ---------- Count-up stats ---------- */
+  const nums = document.querySelectorAll('.stat-num[data-to]');
+  if (!reduce && 'IntersectionObserver' in window) {
+    const countIO = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return;
+      countIO.unobserve(en.target);
+      const el = en.target, to = +el.dataset.to, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+      const t0 = performance.now(), dur = 1600;
+      const step = now => {
+        const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = pre + fmt(Math.round(to * e)) + suf;
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }), {threshold: 0.5});
+    nums.forEach(n => { if (n.getBoundingClientRect().top > innerHeight) countIO.observe(n); });
+  }
+
+  /* ---------- Active nav link ---------- */
+  const navLinks = [...document.querySelectorAll('.nav-links a')];
+  if ('IntersectionObserver' in window) {
+    const secIO = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return;
+      navLinks.forEach(a => { if (a.getAttribute('href') === '#' + en.target.id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    }), {rootMargin: '-45% 0px -50% 0px'});
+    ['home', 'projects', 'services', 'about', 'contact'].forEach(id => secIO.observe(document.getElementById(id)));
+  }
+})();
+
+</script>
