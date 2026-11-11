@@ -1,3 +1,6 @@
 _raw/
 _candidates/
 preview.html
+
+.vercel
+.env*
